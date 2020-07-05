@@ -1,0 +1,15 @@
+// Tailwind
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// Fonts
+@import "https://fonts.googleapis.com/css?family=Jost:300,400,700,800";
+
+// Variables
+@import "variables";
+
+html,
+body {
+    font-family: $font-family-sans-serif;
+}
