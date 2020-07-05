@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Expert from "./Expert";
 
-export default function Experts({ experts }) {
+export default function Experts() {
+    const [experts, setExperts] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get("/api/experts")
+            .then(({ data }) => {
+                setExperts(data);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
     if (experts === null || experts === 0 || experts === undefined) {
         return <div className="text-2xl text-center">Loading.....</div>;
     } else {
         return (
             <section className="text-gray-700 body-font">
-                <div className="container px-5 py-24 mx-auto">
+                <div className="container px-5 py-12 mx-auto">
                     <div className="text-center mb-20">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">
                             Welcome to Our Expert Booking Portal
@@ -16,7 +28,7 @@ export default function Experts({ experts }) {
                             We provide you a world-wide portal with world-class
                             professions to seek the right consult.
                         </p>
-                        <div className="flex mt-6 justify-center">
+                        <div className="flex mt-3 justify-center">
                             <div className="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
                         </div>
                     </div>

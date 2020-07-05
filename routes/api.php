@@ -18,5 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 */
 
 Route::get('/experts', 'MainController@getExperts');
-
 Route::get('/experts/{expert}', 'MainController@getExpertByID');

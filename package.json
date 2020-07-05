@@ -27,6 +27,8 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "moment": "^2.27.0",
+        "moment-range": "^4.0.2",
         "react-router-dom": "^5.2.0",
         "react-scroll-into-view": "^1.8.2",
         "tailwindcss": "^1.4.6"

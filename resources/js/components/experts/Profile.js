@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import ScrollIntoView from "react-scroll-into-view";
+import { useParams, Link } from "react-router-dom";
 
 export default function Profile() {
     let { id } = useParams();
@@ -50,14 +49,17 @@ export default function Profile() {
                         </p>
 
                         <div className="flex justify-center">
-                            <button className="bg-indigo-700 hover:bg-gray-100 text-white hover:text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow transition duration-200">
+                            <Link
+                                to="/book"
+                                className="bg-indigo-700 hover:bg-gray-100 text-white hover:text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow transition duration-200"
+                            >
                                 Book Now
-                            </button>
-                            <ScrollIntoView selector="#app">
+                            </Link>
+                            <Link to="/experts">
                                 <button className="ml-4 bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow transition duration-200">
                                     View other experts
                                 </button>
-                            </ScrollIntoView>
+                            </Link>
                         </div>
                     </div>
                 </div>

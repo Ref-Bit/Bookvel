@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ScrollIntoView from "react-scroll-into-view";
 
 export default function Expert({ expert }) {
     return (
@@ -24,25 +23,23 @@ export default function Expert({ expert }) {
                     {expert.name}
                 </h2>
                 <p className="leading-relaxed text-base">{expert.profession}</p>
-                <ScrollIntoView selector="#expert">
-                    <Link
-                        to={`/experts/${expert.id}`}
-                        className="mt-3 text-indigo-500 inline-flex items-center"
+                <Link
+                    to={`/experts/${expert.id}`}
+                    className="mt-3 text-indigo-500 inline-flex items-center transition duration-200 transform hover:translate-x-2"
+                >
+                    More Info
+                    <svg
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        className="w-4 h-4 ml-2"
+                        viewBox="0 0 24 24"
                     >
-                        More Info
-                        <svg
-                            fill="none"
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            className="w-4 h-4 ml-2"
-                            viewBox="0 0 24 24"
-                        >
-                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                    </Link>
-                </ScrollIntoView>
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                </Link>
             </div>
         </div>
     );
