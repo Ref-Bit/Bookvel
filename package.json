@@ -27,6 +27,8 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "react-router-dom": "^5.2.0",
+        "react-scroll-into-view": "^1.8.2",
         "tailwindcss": "^1.4.6"
     }
 }
