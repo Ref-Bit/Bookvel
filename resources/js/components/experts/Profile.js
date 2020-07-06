@@ -1,18 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import Moment from "moment";
+import { fetchExpert, fetchGeoTimezone } from "../../api";
 
 export default function Profile() {
     let { id } = useParams();
     const [expert, setExpert] = useState([]);
+    const [userTimezone, setUserTimezone] = useState("");
+
+    const TimeDiff = ({ e_st, e_et, u_timezone }) => {
+        const new_e_st = Date.parse(e_st);
+        const new_e_et = Date.parse(e_et);
+        const format_options = {
+            timeZone: u_timezone,
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit"
+        };
+
+        const u_st = new Date(new_e_st).toLocaleString("en-US", format_options);
+        console.log("Start time: " + u_st + " Timezone: " + u_timezone);
+
+        const u_et = new Date(new_e_et).toLocaleString("en-US", format_options);
+        console.log("End time: " + u_et + " Timezone: " + u_timezone);
+
+        return (
+            <p className="mb-8 leading-relaxed text-lg">
+                Working Hours (User Timezone):&nbsp;
+                {u_st} - {u_et}
+            </p>
+        );
+    };
+
     useEffect(() => {
-        axios
-            .get(`/api/experts/${id}`)
-            .then(({ data }) => {
-                console.log(data);
-                setExpert(data);
-            })
-            .catch(err => console.error(err));
-    }, [id]);
+        fetchGeoTimezone("1.1.1.1")
+            .then(data => setUserTimezone(data.timezone))
+            .catch(err => console.log(err));
+        fetchExpert(id)
+            .then(data => setExpert(data))
+            .catch(err => console.log(err));
+    }, [id, userTimezone]);
 
     if (expert === null || expert === 0 || expert === undefined) {
         return <div className="text-2xl text-center">Loading.....</div>;
@@ -38,16 +67,25 @@ export default function Profile() {
                         <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                             {expert.name}
                         </h1>
-                        <p className="leading-relaxed text-lg">
+                        <p className="leading-relaxed text-xl">
                             {expert.profession}
                         </p>
-                        <p className="mb-8 leading-relaxed text-lg">
+                        <p className="mb-8 leading-relaxed text-xl">
                             {expert.country}
                         </p>
                         <p className="mb-8 leading-relaxed text-lg">
-                            Working Hours: {expert.st} - {expert.et}
+                            Working Hours (Expert Timezone):&nbsp;
+                            {Moment(expert.st).format("LLL")}
+                            {" - "}
+                            {Moment(expert.et).format("LLL")}
                         </p>
-
+                        {userTimezone && (
+                            <TimeDiff
+                                e_st={expert.st}
+                                e_et={expert.et}
+                                u_timezone={userTimezone}
+                            />
+                        )}
                         <div className="flex justify-center">
                             <Link
                                 to="/book"
@@ -55,7 +93,7 @@ export default function Profile() {
                             >
                                 Book Now
                             </Link>
-                            <Link to="/experts">
+                            <Link to="/">
                                 <button className="ml-4 bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow transition duration-200">
                                     View other experts
                                 </button>

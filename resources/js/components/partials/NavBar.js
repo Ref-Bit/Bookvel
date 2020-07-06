@@ -17,12 +17,12 @@ export default function NavBar() {
                 </div>
                 <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                     <div className="text-lg lg:flex-grow">
-                        <Link
+                        {/* <Link
                             to="/experts"
                             className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-black mr-4 transition duration-300 font-semibold"
                         >
                             Experts
-                        </Link>
+                        </Link> */}
                         <Link
                             to="/book"
                             className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-black mr-4 transition duration-300 font-semibold"

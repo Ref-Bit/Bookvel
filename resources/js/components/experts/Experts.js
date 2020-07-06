@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Expert from "./Expert";
+import { fetchExperts } from "../../api";
 
 export default function Experts() {
     const [experts, setExperts] = useState([]);
 
     useEffect(() => {
-        axios
-            .get("/api/experts")
-            .then(({ data }) => {
+        fetchExperts()
+            .then(data => {
                 setExperts(data);
             })
             .catch(err => console.log(err));
