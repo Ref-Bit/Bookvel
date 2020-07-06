@@ -1,21 +1,62 @@
 import React, { useState, useEffect } from "react";
-import { fetchExperts } from "../../api";
+import { fetchExperts, fetchExpert } from "../../api";
 import Moment from "moment";
 import { extendMoment } from "moment-range";
 const moment = extendMoment(Moment);
 
 export default function BookForm() {
     const [experts, setExperts] = useState([]);
-    const [durHours, setDurHours] = useState([]);
+    const [expert, setExpert] = useState([]);
+    const [durations, setDurations] = useState([]);
+    const [rangeFactor, setRangeFactor] = useState("hours");
+    const [rangeStep, setRangeStep] = useState("1");
+
+    const expertChange = e => {
+        e.preventDefault();
+        fetchExpert(e.target.value)
+            .then(data => {
+                setExpert(data);
+                calDurations(data, rangeFactor, rangeStep);
+            })
+            .catch(err => console.log(err));
+    };
+
+    const durationChange = e => {
+        e.preventDefault();
+        setRangeStep(e.target.value);
+        if (
+            e.target.value !== "45" &&
+            e.target.value !== "30" &&
+            e.target.value !== "15"
+        ) {
+            setRangeFactor("hours");
+        } else {
+            setRangeFactor("minutes");
+        }
+        calDurations(expert, rangeFactor, rangeStep);
+    };
+
+    const calDurations = (data, r_factor, r_step) => {
+        const range = moment.range(data.st, data.et);
+        const ranges = Array.from(range.by(r_factor, { step: r_step }));
+        setDurations(ranges);
+    };
+    // const durRange = (expert, factor, step) => {
+    //     const range = moment.range(expert.st, expert.et);
+    //     const ranges = Array.from(range.by(factor, { step }));
+    //     // ranges.length == 24; // true
+    //     setDurations(ranges);
+    // };
+
     useEffect(() => {
         fetchExperts()
-            .then(data => setExperts(data))
+            .then(data => {
+                setExperts(data);
+                calDurations(data[0], rangeFactor, rangeStep);
+            })
             .catch(err => console.log(err));
-        const range = moment.range("2020-07-05 06:00", "2020-07-05 17:00");
-        const minutes = Array.from(range.by("minutes", { step: 30 }));
-        // minutes.length == 24; // true
-        setDurHours(minutes);
-    }, []);
+    }, [expert, rangeFactor, rangeStep]);
+
     if (experts === null || experts === 0 || experts === undefined) {
         return <div className="text-2xl text-center">Loading.....</div>;
     } else {
@@ -39,13 +80,15 @@ export default function BookForm() {
                                 className="block text-gray-700 text-sm font-bold mb-2"
                                 htmlFor="expert"
                             >
-                                Select Expert:
+                                Experts:
                             </label>
                             <div className="inline-block relative w-full">
                                 <select
+                                    onChange={expertChange}
                                     id="expert"
                                     className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                 >
+                                    <option value="1">Select Expert:</option>
                                     {experts.map(expert => (
                                         <React.Fragment key={expert.id}>
                                             <option value={expert.id}>
@@ -85,7 +128,7 @@ export default function BookForm() {
                                 className="block text-gray-700 text-sm font-bold mb-2"
                                 htmlFor="date"
                             >
-                                Pick Date:
+                                Date:
                             </label>
                             <input
                                 type="date"
@@ -99,13 +142,15 @@ export default function BookForm() {
                                 className="block text-gray-700 text-sm font-bold mb-2"
                                 htmlFor="duration"
                             >
-                                Select Duration:
+                                Duration:
                             </label>
                             <div className="inline-block relative w-full">
                                 <select
+                                    onChange={durationChange}
                                     id="duration"
                                     className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                 >
+                                    <option value="1">Select Duration:</option>
                                     <option value="15">15 mins</option>
                                     <option value="30">30 mins</option>
                                     <option value="45">45 mins</option>
@@ -134,15 +179,15 @@ export default function BookForm() {
                                     id="available_hours"
                                     className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                 >
-                                    {durHours &&
-                                        durHours.map((m, i, durHours) => {
-                                            if (durHours.length - 1 !== i) {
+                                    {durations &&
+                                        durations.map((m, i, durations) => {
+                                            if (durations.length - 1 !== i) {
                                                 return (
                                                     <React.Fragment key={i}>
                                                         <option>
                                                             {m.format("HH:mm")}
                                                             &nbsp; - &nbsp;
-                                                            {durHours[
+                                                            {durations[
                                                                 i + 1
                                                             ].format("HH:mm")}
                                                         </option>
@@ -164,6 +209,11 @@ export default function BookForm() {
                                 </div>
                             </div>
                         </div>
+                        {/* <Durations
+                            expert={expert}
+                            factor={rangeFactor}
+                            step={rangeStep}
+                        /> */}
                         <div className="mb-1">
                             <button
                                 type="submit"

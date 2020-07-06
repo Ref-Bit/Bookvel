@@ -21,10 +21,10 @@ export default function Profile() {
         };
 
         const u_st = new Date(new_e_st).toLocaleString("en-US", format_options);
-        console.log("Start time: " + u_st + " Timezone: " + u_timezone);
+        // console.log("Start time: " + u_st + " Timezone: " + u_timezone);
 
         const u_et = new Date(new_e_et).toLocaleString("en-US", format_options);
-        console.log("End time: " + u_et + " Timezone: " + u_timezone);
+        // console.log("End time: " + u_et + " Timezone: " + u_timezone);
 
         return (
             <p className="mb-8 leading-relaxed text-lg">
@@ -41,7 +41,7 @@ export default function Profile() {
         fetchExpert(id)
             .then(data => setExpert(data))
             .catch(err => console.log(err));
-    }, [id, userTimezone]);
+    }, [id]);
 
     if (expert === null || expert === 0 || expert === undefined) {
         return <div className="text-2xl text-center">Loading.....</div>;

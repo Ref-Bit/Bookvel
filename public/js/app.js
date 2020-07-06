@@ -56638,14 +56638,13 @@ module.exports = function(module) {
 /*!***********************************!*\
   !*** ./resources/js/api/index.js ***!
   \***********************************/
-/*! exports provided: fetchExperts, fetchExpert, fetchGeoIP, fetchGeoTimezone */
+/*! exports provided: fetchExperts, fetchExpert, fetchGeoTimezone */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchExperts", function() { return fetchExperts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchExpert", function() { return fetchExpert; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGeoIP", function() { return fetchGeoIP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGeoTimezone", function() { return fetchGeoTimezone; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -56752,8 +56751,8 @@ var fetchExpert = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
-var fetchGeoIP = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+var fetchGeoTimezone = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(ip) {
     var _yield$axios$get3, data;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -56762,7 +56761,7 @@ var fetchGeoIP = /*#__PURE__*/function () {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://api.ipstack.com/check?access_key=50d02c3b0b49cab5081193e999a7e1b7&format=1");
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://worldtimeapi.org/api/ip/".concat(ip, ".json"));
 
           case 3:
             _yield$axios$get3 = _context3.sent;
@@ -56795,55 +56794,8 @@ var fetchGeoIP = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 12]]);
   }));
 
-  return function fetchGeoIP() {
-    return _ref3.apply(this, arguments);
-  };
-}();
-var fetchGeoTimezone = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(ip) {
-    var _yield$axios$get4, data;
-
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            _context4.prev = 0;
-            _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://worldtimeapi.org/api/ip/".concat(ip, ".json"));
-
-          case 3:
-            _yield$axios$get4 = _context4.sent;
-            data = _yield$axios$get4.data;
-
-            if (!(data !== null)) {
-              _context4.next = 9;
-              break;
-            }
-
-            return _context4.abrupt("return", data);
-
-          case 9:
-            return _context4.abrupt("return", []);
-
-          case 10:
-            _context4.next = 15;
-            break;
-
-          case 12:
-            _context4.prev = 12;
-            _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
-
-          case 15:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4, null, [[0, 12]]);
-  }));
-
   return function fetchGeoTimezone(_x2) {
-    return _ref4.apply(this, arguments);
+    return _ref3.apply(this, arguments);
   };
 }();
 
@@ -56967,22 +56919,69 @@ function BookForm() {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      durHours = _useState4[0],
-      setDurHours = _useState4[1];
+      expert = _useState4[0],
+      setExpert = _useState4[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    Object(_api__WEBPACK_IMPORTED_MODULE_1__["fetchExperts"])().then(function (data) {
-      return setExperts(data);
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      durations = _useState6[0],
+      setDurations = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("hours"),
+      _useState8 = _slicedToArray(_useState7, 2),
+      rangeFactor = _useState8[0],
+      setRangeFactor = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("1"),
+      _useState10 = _slicedToArray(_useState9, 2),
+      rangeStep = _useState10[0],
+      setRangeStep = _useState10[1];
+
+  var expertChange = function expertChange(e) {
+    e.preventDefault();
+    Object(_api__WEBPACK_IMPORTED_MODULE_1__["fetchExpert"])(e.target.value).then(function (data) {
+      setExpert(data);
+      calDurations(data, rangeFactor, rangeStep);
     })["catch"](function (err) {
       return console.log(err);
     });
-    var range = moment.range("2020-07-05 06:00", "2020-07-05 17:00");
-    var minutes = Array.from(range.by("minutes", {
-      step: 30
-    })); // minutes.length == 24; // true
+  };
 
-    setDurHours(minutes);
-  }, []);
+  var durationChange = function durationChange(e) {
+    e.preventDefault();
+    setRangeStep(e.target.value);
+
+    if (e.target.value !== "45" && e.target.value !== "30" && e.target.value !== "15") {
+      setRangeFactor("hours");
+    } else {
+      setRangeFactor("minutes");
+    }
+
+    calDurations(expert, rangeFactor, rangeStep);
+  };
+
+  var calDurations = function calDurations(data, r_factor, r_step) {
+    var range = moment.range(data.st, data.et);
+    var ranges = Array.from(range.by(r_factor, {
+      step: r_step
+    }));
+    setDurations(ranges);
+  }; // const durRange = (expert, factor, step) => {
+  //     const range = moment.range(expert.st, expert.et);
+  //     const ranges = Array.from(range.by(factor, { step }));
+  //     // ranges.length == 24; // true
+  //     setDurations(ranges);
+  // };
+
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    Object(_api__WEBPACK_IMPORTED_MODULE_1__["fetchExperts"])().then(function (data) {
+      setExperts(data);
+      calDurations(data[0], rangeFactor, rangeStep);
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  }, [expert, rangeFactor, rangeStep]);
 
   if (experts === null || experts === 0 || experts === undefined) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -57010,12 +57009,15 @@ function BookForm() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "block text-gray-700 text-sm font-bold mb-2",
       htmlFor: "expert"
-    }, "Select Expert:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Experts:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "inline-block relative w-full"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      onChange: expertChange,
       id: "expert",
       className: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-    }, experts.map(function (expert) {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: "1"
+    }, "Select Expert:"), experts.map(function (expert) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
         key: expert.id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -57045,7 +57047,7 @@ function BookForm() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "block text-gray-700 text-sm font-bold mb-2",
       htmlFor: "date"
-    }, "Pick Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    }, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       type: "date",
       id: "date",
       name: "date",
@@ -57055,12 +57057,15 @@ function BookForm() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "block text-gray-700 text-sm font-bold mb-2",
       htmlFor: "duration"
-    }, "Select Duration:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Duration:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "inline-block relative w-full"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      onChange: durationChange,
       id: "duration",
       className: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: "1"
+    }, "Select Duration:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       value: "15"
     }, "15 mins"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       value: "30"
@@ -57086,11 +57091,11 @@ function BookForm() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
       id: "available_hours",
       className: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-    }, durHours && durHours.map(function (m, i, durHours) {
-      if (durHours.length - 1 !== i) {
+    }, durations && durations.map(function (m, i, durations) {
+      if (durations.length - 1 !== i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
           key: i
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, m.format("HH:mm"), "\xA0 - \xA0", durHours[i + 1].format("HH:mm")));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, m.format("HH:mm"), "\xA0 - \xA0", durations[i + 1].format("HH:mm")));
       } else {
         return;
       }
@@ -57308,10 +57313,10 @@ function Profile() {
       hour: "2-digit",
       minute: "2-digit"
     };
-    var u_st = new Date(new_e_st).toLocaleString("en-US", format_options);
-    console.log("Start time: " + u_st + " Timezone: " + u_timezone);
-    var u_et = new Date(new_e_et).toLocaleString("en-US", format_options);
-    console.log("End time: " + u_et + " Timezone: " + u_timezone);
+    var u_st = new Date(new_e_st).toLocaleString("en-US", format_options); // console.log("Start time: " + u_st + " Timezone: " + u_timezone);
+
+    var u_et = new Date(new_e_et).toLocaleString("en-US", format_options); // console.log("End time: " + u_et + " Timezone: " + u_timezone);
+
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-8 leading-relaxed text-lg"
     }, "Working Hours (User Timezone):\xA0", u_st, " - ", u_et);
@@ -57328,7 +57333,7 @@ function Profile() {
     })["catch"](function (err) {
       return console.log(err);
     });
-  }, [id, userTimezone]);
+  }, [id]);
 
   if (expert === null || expert === 0 || expert === undefined) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
