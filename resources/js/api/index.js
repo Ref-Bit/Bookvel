@@ -46,7 +46,7 @@ export const fetchIP = async () => {
 export const fetchGeoTimezone = async ip => {
     try {
         const { data } = await axios.get(
-            `http://worldtimeapi.org/api/ip/${ip}.json`
+            `https://api.ipgeolocation.io/timezone?apiKey=5f5fd38f997c448cb21d65e27cf6a588&ip=${ip}&lang=cn`
         );
 
         if (data !== null) {

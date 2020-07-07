@@ -56809,7 +56809,7 @@ var fetchGeoTimezone = /*#__PURE__*/function () {
           case 0:
             _context4.prev = 0;
             _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://worldtimeapi.org/api/ip/".concat(ip, ".json"));
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("https://api.ipgeolocation.io/timezone?apiKey=5f5fd38f997c448cb21d65e27cf6a588&ip=".concat(ip, "&lang=cn"));
 
           case 3:
             _yield$axios$get4 = _context4.sent;
