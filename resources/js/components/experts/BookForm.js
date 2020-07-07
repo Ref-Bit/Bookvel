@@ -55,7 +55,7 @@ export default function BookForm() {
                 calDurations(data[0], rangeFactor, rangeStep);
             })
             .catch(err => console.log(err));
-    }, [expert, rangeFactor, rangeStep]);
+    }, [rangeFactor, rangeStep]);
 
     if (experts === null || experts.length === 0 || experts === undefined) {
         return <div className="text-2xl text-center">Loading.....</div>;
