@@ -15,6 +15,7 @@ A web app to book your expert from around the world.
 - Run `composer install` to install composer packages.
 - Enter database information in a new `.env` file.
 - Run `php artisan migrate`.
+- Run `php artisan db:seed`.
 - Run `npm install` to install npm modules.
 - Run `php artisan serve` to run app successfully.
 
