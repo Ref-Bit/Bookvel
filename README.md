@@ -1,4 +1,4 @@
-## BookVel 🎬
+## BookVel
 A web app to book your expert from around the world.
 
 ***
