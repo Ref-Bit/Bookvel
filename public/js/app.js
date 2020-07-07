@@ -56768,7 +56768,7 @@ var fetchIP = /*#__PURE__*/function () {
             _yield$axios$get3 = _context3.sent;
             data = _yield$axios$get3.data;
 
-            if (!(data !== null)) {
+            if (!(data.length !== 0 || data !== null || data !== undefined)) {
               _context3.next = 9;
               break;
             }
