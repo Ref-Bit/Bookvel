@@ -56638,13 +56638,14 @@ module.exports = function(module) {
 /*!***********************************!*\
   !*** ./resources/js/api/index.js ***!
   \***********************************/
-/*! exports provided: fetchExperts, fetchExpert, fetchGeoTimezone */
+/*! exports provided: fetchExperts, fetchExpert, fetchIP, fetchGeoTimezone */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchExperts", function() { return fetchExperts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchExpert", function() { return fetchExpert; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchIP", function() { return fetchIP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchGeoTimezone", function() { return fetchGeoTimezone; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -56751,8 +56752,8 @@ var fetchExpert = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
-var fetchGeoTimezone = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(ip) {
+var fetchIP = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
     var _yield$axios$get3, data;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -56761,7 +56762,7 @@ var fetchGeoTimezone = /*#__PURE__*/function () {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://worldtimeapi.org/api/ip/".concat(ip, ".json"));
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("https://cors-anywhere.herokuapp.com/https://freegeoip.app/json");
 
           case 3:
             _yield$axios$get3 = _context3.sent;
@@ -56794,8 +56795,55 @@ var fetchGeoTimezone = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 12]]);
   }));
 
-  return function fetchGeoTimezone(_x2) {
+  return function fetchIP() {
     return _ref3.apply(this, arguments);
+  };
+}();
+var fetchGeoTimezone = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(ip) {
+    var _yield$axios$get4, data;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://worldtimeapi.org/api/ip/".concat(ip, ".json"));
+
+          case 3:
+            _yield$axios$get4 = _context4.sent;
+            data = _yield$axios$get4.data;
+
+            if (!(data !== null)) {
+              _context4.next = 9;
+              break;
+            }
+
+            return _context4.abrupt("return", data);
+
+          case 9:
+            return _context4.abrupt("return", []);
+
+          case 10:
+            _context4.next = 15;
+            break;
+
+          case 12:
+            _context4.prev = 12;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+
+          case 15:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 12]]);
+  }));
+
+  return function fetchGeoTimezone(_x2) {
+    return _ref4.apply(this, arguments);
   };
 }();
 
@@ -56844,7 +56892,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _experts_BookForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./experts/BookForm */ "./resources/js/components/experts/BookForm.js");
 /* harmony import */ var _partials_NavBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./partials/NavBar */ "./resources/js/components/partials/NavBar.js");
 /* harmony import */ var _partials_Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./partials/Footer */ "./resources/js/components/partials/Footer.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _context_Global__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../context/Global */ "./resources/js/context/Global.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -56854,21 +56904,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_NavBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_context_Global__WEBPACK_IMPORTED_MODULE_7__["GlobalProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_NavBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container relative min-h-screen mx-auto"
-  }, location.pathname.match("/") ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_experts_Experts__WEBPACK_IMPORTED_MODULE_2__["default"], null) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
+  }, location.pathname.match("/") ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_experts_Experts__WEBPACK_IMPORTED_MODULE_2__["default"], null) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Route"], {
     exact: true,
     path: "/experts",
     component: _experts_Experts__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Route"], {
     exact: true,
     path: "/experts/:id",
     component: _experts_Profile__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Route"], {
     excat: true,
     path: "/book",
     component: _experts_BookForm__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_Footer__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_Footer__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
 }
 
 if (document.getElementById("app")) {
@@ -56983,7 +57033,7 @@ function BookForm() {
     });
   }, [expert, rangeFactor, rangeStep]);
 
-  if (experts === null || experts === 0 || experts === undefined) {
+  if (experts === null || experts.length === 0 || experts === undefined) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-2xl text-center"
     }, "Loading.....");
@@ -57220,7 +57270,7 @@ function Experts() {
     });
   }, []);
 
-  if (experts === null || experts === 0 || experts === undefined) {
+  if (experts === null || experts.length === 0 || experts === undefined) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-2xl text-center"
     }, "Loading.....");
@@ -57269,6 +57319,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api */ "./resources/js/api/index.js");
+/* harmony import */ var _context_Global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/Global */ "./resources/js/context/Global.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -57280,6 +57331,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -57298,6 +57350,9 @@ function Profile() {
       _useState4 = _slicedToArray(_useState3, 2),
       userTimezone = _useState4[0],
       setUserTimezone = _useState4[1];
+
+  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_Global__WEBPACK_IMPORTED_MODULE_4__["GlobalContext"]),
+      ip = _useContext.ip;
 
   var TimeDiff = function TimeDiff(_ref) {
     var e_st = _ref.e_st,
@@ -57323,7 +57378,7 @@ function Profile() {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    Object(_api__WEBPACK_IMPORTED_MODULE_3__["fetchGeoTimezone"])("1.1.1.1").then(function (data) {
+    Object(_api__WEBPACK_IMPORTED_MODULE_3__["fetchGeoTimezone"])(ip).then(function (data) {
       return setUserTimezone(data.timezone);
     })["catch"](function (err) {
       return console.log(err);
@@ -57333,9 +57388,10 @@ function Profile() {
     })["catch"](function (err) {
       return console.log(err);
     });
-  }, [id]);
+    console.log(ip);
+  }, [ip, id]);
 
-  if (expert === null || expert === 0 || expert === undefined) {
+  if (expert === null || expert.length === 0 || expert === undefined) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-2xl text-center"
     }, "Loading.....");
@@ -57429,27 +57485,195 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _context_Global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../context/Global */ "./resources/js/context/Global.js");
+
 
 
 function NavBar() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-    className: "flex items-baseline justify-between flex-wrap bg-indigo-700 p-6 mb-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center flex-shrink-0 text-white mr-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "font-semibold text-4xl tracking-tight",
-    id: "logo"
-  }, "BookVel"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full block flex-grow lg:flex lg:items-center lg:w-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-lg lg:flex-grow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/book",
-    className: "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-black mr-4 transition duration-300 font-semibold"
-  }, "Consult Now")))));
+  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_Global__WEBPACK_IMPORTED_MODULE_2__["GlobalContext"]),
+      ips = _useContext.ips;
+
+  var _useContext2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_Global__WEBPACK_IMPORTED_MODULE_2__["GlobalContext"]),
+      setIP = _useContext2.setIP;
+
+  if (ips === undefined || ips === null || ips.length === 0) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-2xl text-center"
+    }, "Loading.....");
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+      className: "flex items-baseline justify-between flex-wrap bg-indigo-700 p-6 mb-5"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "flex items-center flex-shrink-0 text-white mr-6"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "font-semibold text-4xl tracking-tight",
+      id: "logo"
+    }, "BookVel"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "w-full block flex-grow lg:flex lg:items-center lg:w-auto"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-lg lg:flex-grow"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/book",
+      className: "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-black mr-4 transition duration-300 font-semibold"
+    }, "Consult Now")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "group inline-block z-10"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "outline-none focus:outline-none border px-3 py-1 bg-white rounded-sm flex items-center w-40"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "pr-1 font-semibold flex-1"
+    }, "User Location:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      className: "fill-current h-4 w-4 transform group-hover:-rotate-180 transition duration-300 ease-in-out",
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 20 20"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+      d: "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+    })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-300 ease-in-out origin-top w-40"
+    }, ips.map(function (item, i) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+        key: i
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "block w-full rounded-sm px-3 py-1 hover:bg-gray-100",
+        value: item.ip_address,
+        onClick: function onClick(e) {
+          return setIP(e.target.value);
+        }
+      }, item.location));
+    }))))));
+  }
 }
+
+/***/ }),
+
+/***/ "./resources/js/context/Global.js":
+/*!****************************************!*\
+  !*** ./resources/js/context/Global.js ***!
+  \****************************************/
+/*! exports provided: GlobalContext, GlobalProvider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalContext", function() { return GlobalContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalProvider", function() { return GlobalProvider; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Reducer */ "./resources/js/context/Reducer.js");
+/* harmony import */ var _data_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data.json */ "./resources/js/data.json");
+var _data_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../data.json */ "./resources/js/data.json", 1);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../api */ "./resources/js/api/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var GlobalContext = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])();
+var GlobalProvider = function GlobalProvider(_ref) {
+  var children = _ref.children;
+  // Initial State
+  var initialState = {
+    ips: [],
+    ip: ""
+  };
+
+  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(_Reducer__WEBPACK_IMPORTED_MODULE_1__["default"], initialState),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      state = _useReducer2[0],
+      dispatch = _useReducer2[1]; // Actions
+
+
+  function fetchIps(ips) {
+    dispatch({
+      type: "GET_IPS",
+      payload: ips
+    });
+  }
+
+  function setIP(ip) {
+    dispatch({
+      type: "SET_IP",
+      payload: ip
+    });
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    /* GET IPS */
+    fetchIps(_data_json__WEBPACK_IMPORTED_MODULE_2__["ips"]);
+    /* GET USER IP */
+
+    Object(_api__WEBPACK_IMPORTED_MODULE_3__["fetchIP"])().then(function (data) {
+      console.log(data);
+      setIP(data.ip);
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GlobalContext.Provider, {
+    value: {
+      ips: state.ips,
+      ip: state.ip,
+      setIP: setIP
+    }
+  }, children);
+};
+
+/***/ }),
+
+/***/ "./resources/js/context/Reducer.js":
+/*!*****************************************!*\
+  !*** ./resources/js/context/Reducer.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* harmony default export */ __webpack_exports__["default"] = (function (state, action) {
+  switch (action.type) {
+    case "GET_IPS":
+      return _objectSpread(_objectSpread({}, state), {}, {
+        ips: action.payload
+      });
+
+    case "SET_IP":
+      return _objectSpread(_objectSpread({}, state), {}, {
+        ip: action.payload
+      });
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/data.json":
+/*!********************************!*\
+  !*** ./resources/js/data.json ***!
+  \********************************/
+/*! exports provided: ips, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"ips\":[{\"id\":1,\"location\":\"Damascus\",\"ip_address\":\"37.48.128.0\"},{\"id\":2,\"location\":\"Kuwait\",\"ip_address\":\"161.252.0.0\"},{\"id\":3,\"location\":\"Chigaco\",\"ip_address\":\"134.201.250.155\"},{\"id\":4,\"location\":\"Beijing\",\"ip_address\":\"115.171.110.192\"},{\"id\":5,\"location\":\"London\",\"ip_address\":\"193.183.172.157\"},{\"id\":5,\"location\":\"Sydney\",\"ip_address\":\"1.1.1.1\"}]}");
 
 /***/ }),
 

@@ -57,7 +57,7 @@ export default function BookForm() {
             .catch(err => console.log(err));
     }, [expert, rangeFactor, rangeStep]);
 
-    if (experts === null || experts === 0 || experts === undefined) {
+    if (experts === null || experts.length === 0 || experts === undefined) {
         return <div className="text-2xl text-center">Loading.....</div>;
     } else {
         return (

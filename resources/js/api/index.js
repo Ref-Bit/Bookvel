@@ -27,6 +27,22 @@ export const fetchExpert = async id => {
     }
 };
 
+export const fetchIP = async () => {
+    try {
+        const { data } = await axios.get(
+            "https://cors-anywhere.herokuapp.com/https://freegeoip.app/json"
+        );
+
+        if (data.length !== 0 || data !== null || data !== undefined) {
+            return data;
+        } else {
+            return [];
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export const fetchGeoTimezone = async ip => {
     try {
         const { data } = await axios.get(

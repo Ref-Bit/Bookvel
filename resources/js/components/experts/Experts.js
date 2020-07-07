@@ -13,7 +13,7 @@ export default function Experts() {
             .catch(err => console.log(err));
     }, []);
 
-    if (experts === null || experts === 0 || experts === undefined) {
+    if (experts === null || experts.length === 0 || experts === undefined) {
         return <div className="text-2xl text-center">Loading.....</div>;
     } else {
         return (

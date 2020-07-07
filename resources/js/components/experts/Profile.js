@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import Moment from "moment";
 import { fetchExpert, fetchGeoTimezone } from "../../api";
+import { GlobalContext } from "../../context/Global";
 
 export default function Profile() {
     let { id } = useParams();
     const [expert, setExpert] = useState([]);
     const [userTimezone, setUserTimezone] = useState("");
+    const { ip } = useContext(GlobalContext);
 
     const TimeDiff = ({ e_st, e_et, u_timezone }) => {
         const new_e_st = Date.parse(e_st);
@@ -35,15 +37,16 @@ export default function Profile() {
     };
 
     useEffect(() => {
-        fetchGeoTimezone("1.1.1.1")
+        fetchGeoTimezone(ip)
             .then(data => setUserTimezone(data.timezone))
             .catch(err => console.log(err));
         fetchExpert(id)
             .then(data => setExpert(data))
             .catch(err => console.log(err));
-    }, [id]);
+        console.log(ip);
+    }, [ip, id]);
 
-    if (expert === null || expert === 0 || expert === undefined) {
+    if (expert === null || expert.length === 0 || expert === undefined) {
         return <div className="text-2xl text-center">Loading.....</div>;
     } else {
         return (
