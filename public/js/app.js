@@ -56762,7 +56762,7 @@ var fetchIP = /*#__PURE__*/function () {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("https://cors-anywhere.herokuapp.com/https://freegeoip.app/json");
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("http://api.ipstack.com/check?access_key=50d02c3b0b49cab5081193e999a7e1b7&format=1");
 
           case 3:
             _yield$axios$get3 = _context3.sent;
@@ -56906,7 +56906,11 @@ __webpack_require__.r(__webpack_exports__);
 function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_context_Global__WEBPACK_IMPORTED_MODULE_7__["GlobalProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_NavBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container relative min-h-screen mx-auto"
-  }, location.pathname.match("/") ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_experts_Experts__WEBPACK_IMPORTED_MODULE_2__["default"], null) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Route"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Redirect"], {
+    exact: true,
+    from: "/",
+    to: "/experts"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Route"], {
     exact: true,
     path: "/experts",
     component: _experts_Experts__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -56944,6 +56948,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var moment_range__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment-range */ "./node_modules/moment-range/dist/moment-range.js");
 /* harmony import */ var moment_range__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment_range__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _partials_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../partials/Spinner */ "./resources/js/components/partials/Spinner.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -56955,6 +56960,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -57032,12 +57038,7 @@ function BookForm() {
       return console.log(err);
     });
   }, [rangeFactor, rangeStep]);
-
-  if (experts === null || experts.length === 0 || experts === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "text-2xl text-center"
-    }, "Loading.....");
-  } else {
+  if (experts === null || experts.length === 0 || experts === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "px-5 py-12"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -57241,6 +57242,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Expert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Expert */ "./resources/js/components/experts/Expert.js");
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api */ "./resources/js/api/index.js");
+/* harmony import */ var _partials_Spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../partials/Spinner */ "./resources/js/components/partials/Spinner.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -57252,6 +57254,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -57269,12 +57272,7 @@ function Experts() {
       return console.log(err);
     });
   }, []);
-
-  if (experts === null || experts.length === 0 || experts === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "text-2xl text-center"
-    }, "Loading.....");
-  } else {
+  if (experts === null || experts.length === 0 || experts === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], null);else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       className: "text-gray-700 body-font"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -57320,6 +57318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api */ "./resources/js/api/index.js");
 /* harmony import */ var _context_Global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/Global */ "./resources/js/context/Global.js");
+/* harmony import */ var _partials_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../partials/Spinner */ "./resources/js/components/partials/Spinner.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -57331,6 +57330,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -57379,7 +57379,8 @@ function Profile() {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     Object(_api__WEBPACK_IMPORTED_MODULE_3__["fetchGeoTimezone"])(ip).then(function (data) {
-      return setUserTimezone(data.timezone);
+      setUserTimezone(data.timezone);
+      console.log("\uD83C\uDF10 IP Address: ".concat(data.geo.ip, "\n\r\uD83D\uDCCD Location: ").concat(data.geo.city, "\n\r\u231B Timezone: ").concat(data.timezone));
     })["catch"](function (err) {
       return console.log(err);
     });
@@ -57388,14 +57389,8 @@ function Profile() {
     })["catch"](function (err) {
       return console.log(err);
     });
-    console.log(ip);
   }, [ip, id]);
-
-  if (expert === null || expert.length === 0 || expert === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "text-2xl text-center"
-    }, "Loading.....");
-  } else {
+  if (expert === null || expert.length === 0 || expert === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"], null);else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
       id: "expert",
       className: "text-gray-700 body-font"
@@ -57437,7 +57432,7 @@ function Profile() {
       to: "/book",
       className: "bg-indigo-700 hover:bg-gray-100 text-white hover:text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow transition duration-200"
     }, "Book Now"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/"
+      to: "/experts"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "ml-4 bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow transition duration-200"
     }, "View other experts"))))));
@@ -57486,6 +57481,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _context_Global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../context/Global */ "./resources/js/context/Global.js");
+/* harmony import */ var _Spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Spinner */ "./resources/js/components/partials/Spinner.js");
+
 
 
 
@@ -57496,26 +57493,25 @@ function NavBar() {
   var _useContext2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_Global__WEBPACK_IMPORTED_MODULE_2__["GlobalContext"]),
       setIP = _useContext2.setIP;
 
-  if (ips === undefined || ips === null || ips.length === 0) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "text-2xl text-center"
-    }, "Loading.....");
-  } else {
+  if (ips === undefined || ips === null || ips.length === 0) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], null);else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "flex items-baseline justify-between flex-wrap bg-indigo-700 p-6 mb-5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex items-center flex-shrink-0 text-white mr-6"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "font-semibold text-4xl tracking-tight",
       id: "logo"
-    }, "BookVel"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "BookVel")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "w-full block flex-grow lg:flex lg:items-center lg:w-auto"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-lg lg:flex-grow"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      to: "/experts",
+      activeClassName: "active",
+      className: "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-black mr-4 transition duration-300 font-semibold"
+    }, "Experts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
       to: "/book",
+      activeClassName: "active",
       className: "block mt-4 lg:inline-block lg:mt-0 text-white hover:text-black mr-4 transition duration-300 font-semibold"
     }, "Consult Now")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "group inline-block z-10"
@@ -57544,6 +57540,26 @@ function NavBar() {
     }))))));
   }
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/partials/Spinner.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/partials/Spinner.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mx-auto mt-5 loading"
+  });
+});
 
 /***/ }),
 
@@ -57615,8 +57631,7 @@ var GlobalProvider = function GlobalProvider(_ref) {
     /* GET USER IP */
 
     Object(_api__WEBPACK_IMPORTED_MODULE_3__["fetchIP"])().then(function (data) {
-      console.log(data);
-      setIP(data.ip);
+      return setIP(data.ip);
     })["catch"](function (err) {
       return console.log(err);
     });
@@ -57673,7 +57688,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*! exports provided: ips, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"ips\":[{\"id\":1,\"location\":\"Damascus\",\"ip_address\":\"37.48.128.0\"},{\"id\":2,\"location\":\"Kuwait\",\"ip_address\":\"161.252.0.0\"},{\"id\":3,\"location\":\"Chigaco\",\"ip_address\":\"134.201.250.155\"},{\"id\":4,\"location\":\"Beijing\",\"ip_address\":\"115.171.110.192\"},{\"id\":5,\"location\":\"London\",\"ip_address\":\"193.183.172.157\"},{\"id\":5,\"location\":\"Sydney\",\"ip_address\":\"1.1.1.1\"}]}");
+module.exports = JSON.parse("{\"ips\":[{\"id\":1,\"location\":\"Damascus\",\"ip_address\":\"37.48.128.0\"},{\"id\":2,\"location\":\"Kuwait\",\"ip_address\":\"161.252.0.0\"},{\"id\":3,\"location\":\"Los Angeles\",\"ip_address\":\"134.201.250.155\"},{\"id\":4,\"location\":\"Beijing\",\"ip_address\":\"115.171.110.192\"},{\"id\":5,\"location\":\"London\",\"ip_address\":\"185.127.18.101\"},{\"id\":5,\"location\":\"Sydney\",\"ip_address\":\"52.147.8.121\"}]}");
 
 /***/ }),
 

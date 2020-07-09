@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Expert from "./Expert";
 import { fetchExperts } from "../../api";
+import Spinner from "../partials/Spinner";
 
 export default function Experts() {
     const [experts, setExperts] = useState([]);
@@ -13,9 +14,9 @@ export default function Experts() {
             .catch(err => console.log(err));
     }, []);
 
-    if (experts === null || experts.length === 0 || experts === undefined) {
-        return <div className="text-2xl text-center">Loading.....</div>;
-    } else {
+    if (experts === null || experts.length === 0 || experts === undefined)
+        return <Spinner />;
+    else {
         return (
             <section className="text-gray-700 body-font">
                 <div className="container px-5 py-12 mx-auto">

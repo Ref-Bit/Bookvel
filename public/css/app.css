@@ -18250,21 +18250,11 @@ body {
   font-family: "Jost", sans-serif;
 }
 
-/* since nested groupes are not supported we have to use 
-     regular css for the nested dropdowns 
-     li > ul {
-         transform: translatex(100%) scale(0);
-     }
-     li:hover > ul {
-         transform: translatex(101%) scale(1);
-     }
-     li > button svg {
-         transform: rotate(-90deg);
-     }
-     li:hover > button svg {
-         transform: rotate(-270deg);
-     }
-*/
+.active {
+  color: #333333;
+}
+
+/* Navbar Switcher*/
 
 .group:hover .group-hover\:scale-100 {
   transform: scale(1);
@@ -18276,6 +18266,328 @@ body {
 
 .scale-0 {
   transform: scale(0);
+}
+
+/* Spinner */
+
+.loading {
+  width: 125px;
+  height: 125px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border-top: 10px solid #333333;
+  position: relative;
+  -webkit-animation: a1 2s linear infinite;
+          animation: a1 2s linear infinite;
+}
+
+.loading::before,
+.loading::after {
+  content: "";
+  width: 125px;
+  height: 125px;
+  position: absolute;
+  left: 0;
+  top: -10px;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.loading::before {
+  border-top: 10px solid #434190;
+  transform: rotate(120deg);
+}
+
+.loading::after {
+  border-top: 10px solid #b0bec5;
+  transform: rotate(240deg);
+}
+
+.loading span {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  color: black;
+  text-align: center;
+  line-height: 125px;
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-animation: a2 2s linear infinite;
+          animation: a2 2s linear infinite;
+}
+
+@-webkit-keyframes a1 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes a1 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes a2 {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes a2 {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* 404 Page */
+
+.changeColor {
+  fill: #4f86ed;
+}
+
+.cls-1 {
+  opacity: 0.3;
+}
+
+.cls-7 {
+  opacity: 0.8;
+}
+
+.cls-2 {
+  fill: #fff;
+}
+
+.cls-10,
+.cls-11,
+.cls-12,
+.cls-14,
+.cls-16,
+.cls-3 {
+  fill: none;
+}
+
+.cls-3 {
+  stroke: #5a67d8;
+}
+
+.cls-10,
+.cls-11,
+.cls-12,
+.cls-3 {
+  stroke-miterlimit: 10;
+}
+
+.cls-14,
+.cls-15,
+.cls-16,
+.cls-3 {
+  stroke-width: 0.5px;
+}
+
+.cls-4 {
+  fill: #ffe1d9;
+}
+
+.cls-5 {
+  fill: #ffcfbf;
+}
+
+.cls-6 {
+  fill: #fecbb6;
+}
+
+.cls-9 {
+  fill: #5a67d8;
+}
+
+.cls-10,
+.cls-12 {
+  stroke: #d26f51;
+}
+
+.cls-10,
+.cls-11 {
+  stroke-width: 0.38px;
+}
+
+.cls-11 {
+  stroke: #000;
+}
+
+.cls-12 {
+  stroke-width: 0.19px;
+}
+
+.cls-13 {
+  opacity: 0.45;
+}
+
+.cls-14,
+.cls-15,
+.cls-16 {
+  stroke: #b0bec5;
+  stroke-linejoin: round;
+}
+
+.cls-15 {
+  fill: #edf0f2;
+}
+
+.cls-16 {
+  stroke-linecap: round;
+}
+
+.cls-17 {
+  font-family: inherit;
+  font-size: 49.87px;
+  font-weight: 700;
+}
+
+.cls-18 {
+  fill: #fffdbb;
+  opacity: 0.5;
+}
+
+/*---------------------------
+          SVG Animate
+  ---------------------------*/
+
+.earMove {
+  transition: all ease-in-out 2s;
+  transform-origin: 50% 50%;
+  -webkit-animation: earmove 1.5s linear infinite alternate;
+          animation: earmove 1.5s linear infinite alternate;
+}
+
+.faceMove {
+  transition: all ease-in-out 2s;
+  transform-origin: 50% 50%;
+  -webkit-animation: move 1.5s linear infinite alternate;
+          animation: move 1.5s linear infinite alternate;
+}
+
+.neckMove {
+  transition: all ease-in-out 2s;
+  transform-origin: 50% 50%;
+  -webkit-animation: neck 1.5s linear infinite alternate;
+          animation: neck 1.5s linear infinite alternate;
+}
+
+@-webkit-keyframes earmove {
+  0% {
+    transform: translateX(-0.3px) translateY(0.6px);
+  }
+
+  30% {
+    transform: translateX(-0.3px) translateY(0.6px);
+  }
+
+  60% {
+    transform: translateX(-0.7px) translateY(0px);
+  }
+
+  70% {
+    transform: translateX(-0.7px) translateY(-0.3px);
+  }
+
+  100% {
+    transform: translateX(-0.7px) translateY(-0.3px);
+  }
+}
+
+@keyframes earmove {
+  0% {
+    transform: translateX(-0.3px) translateY(0.6px);
+  }
+
+  30% {
+    transform: translateX(-0.3px) translateY(0.6px);
+  }
+
+  60% {
+    transform: translateX(-0.7px) translateY(0px);
+  }
+
+  70% {
+    transform: translateX(-0.7px) translateY(-0.3px);
+  }
+
+  100% {
+    transform: translateX(-0.7px) translateY(-0.3px);
+  }
+}
+
+@-webkit-keyframes move {
+  0% {
+    transform: translateX(-0.3px) translateY(0.6px);
+  }
+
+  30% {
+    transform: translateX(-0.3px) translateY(0.6px);
+  }
+
+  60% {
+    transform: translateX(2px) translateY(0px);
+  }
+
+  70% {
+    transform: translateX(2px) translateY(-0.3px);
+  }
+
+  100% {
+    transform: translateX(2px) translateY(-0.3px);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-0.3px) translateY(0.6px);
+  }
+
+  30% {
+    transform: translateX(-0.3px) translateY(0.6px);
+  }
+
+  60% {
+    transform: translateX(2px) translateY(0px);
+  }
+
+  70% {
+    transform: translateX(2px) translateY(-0.3px);
+  }
+
+  100% {
+    transform: translateX(2px) translateY(-0.3px);
+  }
+}
+
+@-webkit-keyframes neck {
+  0% {
+    transform: translateY(0.7px);
+  }
+
+  50% {
+    transform: translateY(0.7px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes neck {
+  0% {
+    transform: translateY(0.7px);
+  }
+
+  50% {
+    transform: translateY(0.7px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @media (min-width: 640px){

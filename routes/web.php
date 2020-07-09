@@ -17,3 +17,7 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'MainController@index')->name('home');
+
+Route::any('{all}', function () {
+    return redirect('/');
+})->where('all', '^((?!404).)*?');

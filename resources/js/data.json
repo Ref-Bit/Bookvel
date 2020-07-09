@@ -2,9 +2,9 @@
     "ips": [
         { "id": 1, "location": "Damascus", "ip_address": "37.48.128.0" },
         { "id": 2, "location": "Kuwait", "ip_address": "161.252.0.0" },
-        { "id": 3, "location": "Chigaco", "ip_address": "134.201.250.155" },
+        { "id": 3, "location": "Los Angeles", "ip_address": "134.201.250.155" },
         { "id": 4, "location": "Beijing", "ip_address": "115.171.110.192" },
-        { "id": 5, "location": "London", "ip_address": "193.183.172.157" },
-        { "id": 5, "location": "Sydney", "ip_address": "1.1.1.1" }
+        { "id": 5, "location": "London", "ip_address": "185.127.18.101" },
+        { "id": 5, "location": "Sydney", "ip_address": "52.147.8.121" }
     ]
 }

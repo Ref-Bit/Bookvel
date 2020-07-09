@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchExperts, fetchExpert } from "../../api";
 import Moment from "moment";
 import { extendMoment } from "moment-range";
+import Spinner from "../partials/Spinner";
 const moment = extendMoment(Moment);
 
 export default function BookForm() {
@@ -57,9 +58,9 @@ export default function BookForm() {
             .catch(err => console.log(err));
     }, [rangeFactor, rangeStep]);
 
-    if (experts === null || experts.length === 0 || experts === undefined) {
-        return <div className="text-2xl text-center">Loading.....</div>;
-    } else {
+    if (experts === null || experts.length === 0 || experts === undefined)
+        return <Spinner />;
+    else {
         return (
             <div className="px-5 py-12">
                 <div className="text-center mb-5">

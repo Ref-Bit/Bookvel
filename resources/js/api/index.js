@@ -30,7 +30,7 @@ export const fetchExpert = async id => {
 export const fetchIP = async () => {
     try {
         const { data } = await axios.get(
-            "https://cors-anywhere.herokuapp.com/https://freegeoip.app/json"
+            "http://api.ipstack.com/check?access_key=50d02c3b0b49cab5081193e999a7e1b7&format=1"
         );
 
         if (data.length !== 0 || data !== null || data !== undefined) {

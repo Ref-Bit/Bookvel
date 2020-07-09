@@ -6,7 +6,12 @@ import BookForm from "./experts/BookForm";
 import NavBar from "./partials/NavBar";
 import Footer from "./partials/Footer";
 import { GlobalProvider } from "../context/Global";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect
+} from "react-router-dom";
 
 export default function App() {
     return (
@@ -14,8 +19,8 @@ export default function App() {
             <Router>
                 <NavBar />
                 <div className="container relative min-h-screen mx-auto">
-                    {location.pathname.match("/") ? <Experts /> : null}
                     <Switch>
+                        <Redirect exact from="/" to="/experts" />
                         <Route exact path="/experts" component={Experts} />
                         <Route exact path="/experts/:id" component={Profile} />
                         <Route excat path="/book" component={BookForm} />

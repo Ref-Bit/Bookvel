@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Moment from "moment";
 import { fetchExpert, fetchGeoTimezone } from "../../api";
 import { GlobalContext } from "../../context/Global";
+import Spinner from "../partials/Spinner";
 
 export default function Profile() {
     let { id } = useParams();
@@ -38,17 +39,22 @@ export default function Profile() {
 
     useEffect(() => {
         fetchGeoTimezone(ip)
-            .then(data => setUserTimezone(data.timezone))
+            .then(data => {
+                setUserTimezone(data.timezone);
+                console.log(
+                    `🌐 IP Address: ${data.geo.ip}\n\r📍 Location: ${data.geo.city}\n\r⌛ Timezone: ${data.timezone}`
+                );
+            })
             .catch(err => console.log(err));
+
         fetchExpert(id)
             .then(data => setExpert(data))
             .catch(err => console.log(err));
-        console.log(ip);
     }, [ip, id]);
 
-    if (expert === null || expert.length === 0 || expert === undefined) {
-        return <div className="text-2xl text-center">Loading.....</div>;
-    } else {
+    if (expert === null || expert.length === 0 || expert === undefined)
+        return <Spinner />;
+    else {
         return (
             <section id="expert" className="text-gray-700 body-font">
                 <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
@@ -96,7 +102,7 @@ export default function Profile() {
                             >
                                 Book Now
                             </Link>
-                            <Link to="/">
+                            <Link to="/experts">
                                 <button className="ml-4 bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow transition duration-200">
                                     View other experts
                                 </button>
