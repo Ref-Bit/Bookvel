@@ -18294,7 +18294,7 @@ body {
 }
 
 .loading::before {
-  border-top: 10px solid #434190;
+  border-top: 10px solid #4c51bf;
   transform: rotate(120deg);
 }
 
@@ -18588,6 +18588,29 @@ body {
   100% {
     transform: translateY(0px);
   }
+}
+
+/*---------------------------
+          Toastify
+---------------------------*/
+
+.Toastify__toast--default {
+  background: #4c51bf !important;
+  color: #fff !important;
+  border-radius: 5px !important;
+}
+
+.Toastify__toast--default div.Toastify__toast-body {
+  font-family: "Jost", sans-serif !important;
+}
+
+.Toastify__close-button--default {
+  color: #fff !important;
+  opacity: 0.7 !important;
+}
+
+.Toastify__progress-bar--default {
+  background: #fff !important;
 }
 
 @media (min-width: 640px){

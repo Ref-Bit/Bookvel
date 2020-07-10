@@ -31,7 +31,7 @@ export default () => {
                                 Experts
                             </NavLink>
                             <NavLink
-                                to="/book"
+                                to="/book/1"
                                 activeClassName="active"
                                 className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-black mr-4 transition duration-300 font-semibold"
                             >

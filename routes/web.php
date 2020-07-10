@@ -18,3 +18,4 @@ Route::get('/', function () {
 
 Route::get('/', 'MainController@index')->name('home');
 Route::view('/{path?}', 'welcome');
+

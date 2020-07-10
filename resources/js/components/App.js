@@ -19,7 +19,7 @@ export default function App() {
                         <Redirect exact from="/" to="/experts" />
                         <Route exact path="/experts" component={Experts} />
                         <Route exact path="/experts/:id" component={Profile} />
-                        <Route excat path="/book" component={BookForm} />
+                        <Route excat path="/book/:id" component={BookForm} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

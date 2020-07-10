@@ -50,6 +50,7 @@ export default () => {
         fetchExpert(id)
             .then(data => setExpert(data))
             .catch(err => console.log(err));
+        console.log(id);
     }, [ip, id]);
 
     if (expert === null || expert.length === 0 || expert === undefined)
@@ -97,7 +98,7 @@ export default () => {
                         )}
                         <div className="flex justify-center">
                             <Link
-                                to="/book"
+                                to={`/book/${expert.id}`}
                                 className="bg-indigo-700 hover:bg-gray-100 text-white hover:text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow transition duration-200"
                             >
                                 Book Now

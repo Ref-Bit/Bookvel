@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { fetchExperts, fetchExpert } from "../../api";
+import { useParams } from "react-router-dom";
 import Moment from "moment";
 import { extendMoment } from "moment-range";
 import Spinner from "../partials/Spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 const moment = extendMoment(Moment);
 
 export default () => {
+    let { id } = useParams();
     const [experts, setExperts] = useState([]);
     const [expert, setExpert] = useState([]);
     const [durations, setDurations] = useState([]);
@@ -14,10 +18,12 @@ export default () => {
 
     const expertChange = e => {
         e.preventDefault();
+
         fetchExpert(e.target.value)
             .then(data => {
                 setExpert(data);
                 calDurations(data, rangeFactor, rangeStep);
+                document.getElementById("experts").value = data.id;
             })
             .catch(err => console.log(err));
     };
@@ -42,18 +48,22 @@ export default () => {
         const ranges = Array.from(range.by(r_factor, { step: r_step }));
         setDurations(ranges);
     };
-    // const durRange = (expert, factor, step) => {
-    //     const range = moment.range(expert.st, expert.et);
-    //     const ranges = Array.from(range.by(factor, { step }));
-    //     // ranges.length == 24; // true
-    //     setDurations(ranges);
-    // };
+
+    const notify = () => {
+        toast(`Your apponitment will be on: 22 May 2020 from 11 AM to 12 PM`);
+    };
 
     useEffect(() => {
         fetchExperts()
             .then(data => {
                 setExperts(data);
-                calDurations(data[0], rangeFactor, rangeStep);
+            })
+            .catch(err => console.log(err));
+        fetchExpert(id)
+            .then(data => {
+                setExpert(data);
+                calDurations(data, rangeFactor, rangeStep);
+                document.getElementById("experts").value = data.id;
             })
             .catch(err => console.log(err));
     }, [rangeFactor, rangeStep]);
@@ -79,17 +89,17 @@ export default () => {
                         <div className="mb-4">
                             <label
                                 className="block text-gray-700 text-sm font-bold mb-2"
-                                htmlFor="expert"
+                                htmlFor="experts"
                             >
                                 Experts:
                             </label>
                             <div className="inline-block relative w-full">
                                 <select
                                     onChange={expertChange}
-                                    id="expert"
+                                    id="experts"
                                     className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                 >
-                                    <option value="1">Select Expert:</option>
+                                    <option defaultValue>Select Expert:</option>
                                     {experts.map(expert => (
                                         <React.Fragment key={expert.id}>
                                             <option value={expert.id}>
@@ -210,18 +220,15 @@ export default () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <Durations
-                            expert={expert}
-                            factor={rangeFactor}
-                            step={rangeStep}
-                        /> */}
                         <div className="mb-1">
                             <button
-                                type="submit"
+                                onClick={notify}
+                                type="button"
                                 className="w-full bg-indigo-700 hover:bg-black text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow transition duration-200"
                             >
                                 Submit
                             </button>
+                            <ToastContainer />
                         </div>
                     </form>
                 </div>
