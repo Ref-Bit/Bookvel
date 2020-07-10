@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { GlobalContext } from "../../context/Global";
 import Spinner from "./Spinner";
 
-export default function NavBar() {
+export default () => {
     const { ips } = useContext(GlobalContext);
     const { setIP } = useContext(GlobalContext);
 
@@ -72,4 +72,4 @@ export default function NavBar() {
             </React.Fragment>
         );
     }
-}
+};

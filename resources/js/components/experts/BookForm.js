@@ -5,7 +5,7 @@ import { extendMoment } from "moment-range";
 import Spinner from "../partials/Spinner";
 const moment = extendMoment(Moment);
 
-export default function BookForm() {
+export default () => {
     const [experts, setExperts] = useState([]);
     const [expert, setExpert] = useState([]);
     const [durations, setDurations] = useState([]);
@@ -228,4 +228,4 @@ export default function BookForm() {
             </div>
         );
     }
-}
+};

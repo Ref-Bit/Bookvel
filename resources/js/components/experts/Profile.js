@@ -5,7 +5,7 @@ import { fetchExpert, fetchGeoTimezone } from "../../api";
 import { GlobalContext } from "../../context/Global";
 import Spinner from "../partials/Spinner";
 
-export default function Profile() {
+export default () => {
     let { id } = useParams();
     const [expert, setExpert] = useState([]);
     const [userTimezone, setUserTimezone] = useState("");
@@ -113,4 +113,4 @@ export default function Profile() {
             </section>
         );
     }
-}
+};

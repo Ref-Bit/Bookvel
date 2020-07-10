@@ -56887,42 +56887,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _experts_Experts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./experts/Experts */ "./resources/js/components/experts/Experts.js");
-/* harmony import */ var _experts_Profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./experts/Profile */ "./resources/js/components/experts/Profile.js");
-/* harmony import */ var _experts_BookForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./experts/BookForm */ "./resources/js/components/experts/BookForm.js");
-/* harmony import */ var _partials_NavBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./partials/NavBar */ "./resources/js/components/partials/NavBar.js");
-/* harmony import */ var _partials_Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./partials/Footer */ "./resources/js/components/partials/Footer.js");
-/* harmony import */ var _context_Global__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../context/Global */ "./resources/js/context/Global.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-
-
-
-
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index */ "./resources/js/components/index.js");
+/* harmony import */ var _context_Global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context/Global */ "./resources/js/context/Global.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
 
 
 function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_context_Global__WEBPACK_IMPORTED_MODULE_7__["GlobalProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_NavBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_context_Global__WEBPACK_IMPORTED_MODULE_3__["GlobalProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_2__["NavBar"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container relative min-h-screen mx-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Redirect"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Redirect"], {
     exact: true,
     from: "/",
     to: "/experts"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     exact: true,
     path: "/experts",
-    component: _experts_Experts__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Route"], {
+    component: _index__WEBPACK_IMPORTED_MODULE_2__["Experts"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     exact: true,
     path: "/experts/:id",
-    component: _experts_Profile__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Route"], {
+    component: _index__WEBPACK_IMPORTED_MODULE_2__["Profile"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     excat: true,
     path: "/book",
-    component: _experts_BookForm__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_Footer__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
+    component: _index__WEBPACK_IMPORTED_MODULE_2__["BookForm"]
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_2__["Footer"], null)));
 }
 
 if (document.getElementById("app")) {
@@ -56940,7 +56932,6 @@ if (document.getElementById("app")) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BookForm; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api */ "./resources/js/api/index.js");
@@ -56967,7 +56958,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_3__["extendMoment"])(moment__WEBPACK_IMPORTED_MODULE_2___default.a);
-function BookForm() {
+/* harmony default export */ __webpack_exports__["default"] = (function () {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       experts = _useState2[0],
@@ -57165,7 +57156,7 @@ function BookForm() {
       className: "w-full bg-indigo-700 hover:bg-black text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow transition duration-200"
     }, "Submit")))));
   }
-}
+});
 
 /***/ }),
 
@@ -57237,7 +57228,6 @@ function Expert(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Experts; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Expert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Expert */ "./resources/js/components/experts/Expert.js");
@@ -57259,7 +57249,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Experts() {
+/* harmony default export */ __webpack_exports__["default"] = (function () {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       experts = _useState2[0],
@@ -57297,7 +57287,7 @@ function Experts() {
       }));
     }))));
   }
-}
+});
 
 /***/ }),
 
@@ -57310,7 +57300,6 @@ function Experts() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Profile; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
@@ -57337,7 +57326,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Profile() {
+/* harmony default export */ __webpack_exports__["default"] = (function () {
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])(),
       id = _useParams.id;
 
@@ -57437,7 +57426,43 @@ function Profile() {
       className: "ml-4 bg-white hover:bg-gray-100 text-gray-800 py-2 px-4 border border-gray-400 rounded shadow transition duration-200"
     }, "View other experts"))))));
   }
-}
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/index.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/index.js ***!
+  \******************************************/
+/*! exports provided: Experts, Expert, Profile, BookForm, NavBar, Footer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _experts_Experts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./experts/Experts */ "./resources/js/components/experts/Experts.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Experts", function() { return _experts_Experts__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _experts_Expert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./experts/Expert */ "./resources/js/components/experts/Expert.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Expert", function() { return _experts_Expert__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _experts_Profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./experts/Profile */ "./resources/js/components/experts/Profile.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Profile", function() { return _experts_Profile__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _experts_BookForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./experts/BookForm */ "./resources/js/components/experts/BookForm.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BookForm", function() { return _experts_BookForm__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _partials_NavBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./partials/NavBar */ "./resources/js/components/partials/NavBar.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NavBar", function() { return _partials_NavBar__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+/* harmony import */ var _partials_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./partials/Footer */ "./resources/js/components/partials/Footer.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Footer", function() { return _partials_Footer__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+
+
+
+
+
+
 
 /***/ }),
 
@@ -57450,11 +57475,10 @@ function Profile() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Footer; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-function Footer() {
+/* harmony default export */ __webpack_exports__["default"] = (function () {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "text-center text-lg font-semibold"
   }, "BookVel | Created by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -57463,7 +57487,7 @@ function Footer() {
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Ref-Bit"))));
-}
+});
 
 /***/ }),
 
@@ -57476,7 +57500,6 @@ function Footer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NavBar; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
@@ -57486,7 +57509,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function NavBar() {
+/* harmony default export */ __webpack_exports__["default"] = (function () {
   var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_Global__WEBPACK_IMPORTED_MODULE_2__["GlobalContext"]),
       ips = _useContext.ips;
 
@@ -57539,7 +57562,7 @@ function NavBar() {
       }, item.location));
     }))))));
   }
-}
+});
 
 /***/ }),
 

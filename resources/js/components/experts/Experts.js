@@ -3,7 +3,7 @@ import Expert from "./Expert";
 import { fetchExperts } from "../../api";
 import Spinner from "../partials/Spinner";
 
-export default function Experts() {
+export default () => {
     const [experts, setExperts] = useState([]);
 
     useEffect(() => {
@@ -45,4 +45,4 @@ export default function Experts() {
             </section>
         );
     }
-}
+};

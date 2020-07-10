@@ -1,10 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Experts from "./experts/Experts";
-import Profile from "./experts/Profile";
-import BookForm from "./experts/BookForm";
-import NavBar from "./partials/NavBar";
-import Footer from "./partials/Footer";
+import { NavBar, Footer, Experts, Profile, BookForm } from "./index";
 import { GlobalProvider } from "../context/Global";
 import {
     BrowserRouter as Router,

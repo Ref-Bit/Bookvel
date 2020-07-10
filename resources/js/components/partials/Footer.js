@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Footer() {
+export default () => {
     return (
         <React.Fragment>
             <footer>
@@ -18,4 +18,4 @@ export default function Footer() {
             </footer>
         </React.Fragment>
     );
-}
+};
