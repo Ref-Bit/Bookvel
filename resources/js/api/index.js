@@ -30,7 +30,7 @@ export const fetchExpert = async id => {
 export const fetchIP = async () => {
     try {
         const { data } = await axios.get(
-            "http://api.ipstack.com/check?access_key=50d02c3b0b49cab5081193e999a7e1b7&format=1"
+            `http://api.ipstack.com/check?access_key=${process.env.MIX_IP_API_KEY}&format=1`
         );
 
         if (data.length !== 0 || data !== null || data !== undefined) {
@@ -46,7 +46,7 @@ export const fetchIP = async () => {
 export const fetchGeoTimezone = async ip => {
     try {
         const { data } = await axios.get(
-            `https://api.ipgeolocation.io/timezone?apiKey=5f5fd38f997c448cb21d65e27cf6a588&ip=${ip}&lang=cn`
+            `https://api.ipgeolocation.io/timezone?apiKey=${process.env.MIX_GEO_API_KEY}&ip=${ip}&lang=cn`
         );
 
         if (data !== null) {
