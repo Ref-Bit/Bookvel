@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { NavBar, Footer, Experts, Profile, BookForm } from "./index";
+import { NavBar, Footer, Experts, Profile, BookForm, NotFound } from "./index";
 import { GlobalProvider } from "../context/Global";
 import {
     BrowserRouter as Router,
@@ -20,6 +20,7 @@ export default function App() {
                         <Route exact path="/experts" component={Experts} />
                         <Route exact path="/experts/:id" component={Profile} />
                         <Route excat path="/book" component={BookForm} />
+                        <Route component={NotFound} />
                     </Switch>
                 </div>
                 <Footer />

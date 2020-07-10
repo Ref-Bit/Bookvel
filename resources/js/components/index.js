@@ -4,3 +4,4 @@ export { default as Profile } from "./experts/Profile";
 export { default as BookForm } from "./experts/BookForm";
 export { default as NavBar } from "./partials/NavBar";
 export { default as Footer } from "./partials/Footer";
+export { default as NotFound } from "./partials/NotFound";
