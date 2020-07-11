@@ -50,7 +50,6 @@ export default () => {
         fetchExpert(id)
             .then(data => setExpert(data))
             .catch(err => console.log(err));
-        console.log(id);
     }, [ip, id]);
 
     if (expert === null || expert.length === 0 || expert === undefined)

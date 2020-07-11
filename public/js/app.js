@@ -61042,6 +61042,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.min.css */ "./node_modules/react-toastify/dist/ReactToastify.min.css");
 /* harmony import */ var react_toastify_dist_ReactToastify_min_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_toastify_dist_ReactToastify_min_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _context_Global__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../context/Global */ "./resources/js/context/Global.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -61062,10 +61063,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(moment__WEBPACK_IMPORTED_MODULE_3___default.a);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useParams"])(),
       id = _useParams.id;
+
+  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_Global__WEBPACK_IMPORTED_MODULE_8__["GlobalContext"]),
+      ip = _useContext.ip;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -61077,26 +61082,46 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
       expert = _useState4[0],
       setExpert = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      durations = _useState6[0],
-      setDurations = _useState6[1];
+      date = _useState6[0],
+      setDate = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("hours"),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      rangeFactor = _useState8[0],
-      setRangeFactor = _useState8[1];
+      UserStartDate = _useState8[0],
+      setUserStartDate = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("1"),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState10 = _slicedToArray(_useState9, 2),
-      rangeStep = _useState10[0],
-      setRangeStep = _useState10[1];
+      UserEndDate = _useState10[0],
+      setUserEndDate = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      durations = _useState12[0],
+      setDurations = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("hours"),
+      _useState14 = _slicedToArray(_useState13, 2),
+      rangeFactor = _useState14[0],
+      setRangeFactor = _useState14[1];
+
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("1"),
+      _useState16 = _slicedToArray(_useState15, 2),
+      rangeStep = _useState16[0],
+      setRangeStep = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState18 = _slicedToArray(_useState17, 2),
+      userTimezone = _useState18[0],
+      setUserTimezone = _useState18[1];
 
   var expertChange = function expertChange(e) {
     e.preventDefault();
     Object(_api__WEBPACK_IMPORTED_MODULE_1__["fetchExpert"])(e.target.value).then(function (data) {
       setExpert(data);
-      calDurations(data, rangeFactor, rangeStep);
+      calDurations(data, rangeFactor, rangeStep, userTimezone);
       document.getElementById("experts").value = data.id;
     })["catch"](function (err) {
       return console.log(err);
@@ -61104,7 +61129,6 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
   };
 
   var durationChange = function durationChange(e) {
-    e.preventDefault();
     setRangeStep(e.target.value);
 
     if (e.target.value !== "45" && e.target.value !== "30" && e.target.value !== "15") {
@@ -61113,19 +61137,60 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
       setRangeFactor("minutes");
     }
 
-    calDurations(expert, rangeFactor, rangeStep);
+    calDurations(expert, rangeFactor, rangeStep, userTimezone);
   };
 
-  var calDurations = function calDurations(data, r_factor, r_step) {
-    var range = moment.range(data.st, data.et);
+  var calDurations = function calDurations(data, r_factor, r_step, u_timezone) {
+    var new_e_st = Date.parse(data.st);
+    var new_e_et = Date.parse(data.et);
+    var format_options = {
+      timeZone: u_timezone,
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    };
+    var u_st = new Date(new_e_st).toLocaleString("en-US", format_options);
+    var u_et = new Date(new_e_et).toLocaleString("en-US", format_options);
+    var range = moment.range(u_st, u_et);
     var ranges = Array.from(range.by(r_factor, {
       step: r_step
     }));
     setDurations(ranges);
   };
 
+  function tConvert(time) {
+    // Check correct time format and split into components
+    time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+    if (time.length > 1) {
+      // If time format correct
+      time = time.slice(1); // Remove full string match value
+
+      time[5] = +time[0] < 12 ? " AM" : " PM"; // Set AM/PM
+
+      time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+
+    return time.join(""); // return adjusted time or original string
+  }
+
+  var availableChange = function availableChange(e) {
+    var e_val = e.target.value.replace(/\s/g, "");
+    var arr_val = e_val.split("-");
+    console.log(tConvert(arr_val[0]), tConvert(arr_val[1]));
+    setUserStartDate(tConvert(arr_val[0]));
+    setUserEndDate(tConvert(arr_val[1]));
+  };
+
   var notify = function notify() {
-    Object(react_toastify__WEBPACK_IMPORTED_MODULE_6__["toast"])("Your apponitment will be on: 22 May 2020 from 11 AM to 12 PM");
+    if (document.getElementById("experts").value !== "" && document.getElementById("username").value !== "" && document.getElementById("date").value !== "" && document.getElementById("duration").value !== "" && document.getElementById("available_hours").value !== "") {
+      Object(react_toastify__WEBPACK_IMPORTED_MODULE_6__["toast"])("Your apponitment will be on ".concat(date, " from ").concat(UserStartDate, " to ").concat(UserEndDate));
+      document.getElementById("book_form").reset();
+    } else {
+      alert("Please Fill the empty fields");
+    }
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -61136,12 +61201,18 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
     });
     Object(_api__WEBPACK_IMPORTED_MODULE_1__["fetchExpert"])(id).then(function (data) {
       setExpert(data);
-      calDurations(data, rangeFactor, rangeStep);
+      calDurations(data, rangeFactor, rangeStep, userTimezone);
       document.getElementById("experts").value = data.id;
     })["catch"](function (err) {
       return console.log(err);
     });
-  }, [rangeFactor, rangeStep]);
+    Object(_api__WEBPACK_IMPORTED_MODULE_1__["fetchGeoTimezone"])(ip).then(function (data) {
+      console.log("Form: ".concat(data.timezone), "IP: ".concat(ip));
+      setUserTimezone(data.timezone);
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  }, [ip, userTimezone, rangeFactor, rangeStep]);
   if (experts === null || experts.length === 0 || experts === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"], null);else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "px-5 py-12"
@@ -61158,6 +61229,7 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "w-full max-w-md mx-auto"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      id: "book_form",
       className: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "mb-4"
@@ -61190,11 +61262,11 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
       className: "mb-4"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "block text-gray-700 text-sm font-bold mb-2",
-      htmlFor: "text"
+      htmlFor: "username"
     }, "Full Name:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       type: "text",
-      id: "text",
-      name: "text",
+      id: "username",
+      name: "username",
       className: "w-full block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline",
       placeholder: "John Doe"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61203,6 +61275,9 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
       className: "block text-gray-700 text-sm font-bold mb-2",
       htmlFor: "date"
     }, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      onChange: function onChange(e) {
+        setDate(moment__WEBPACK_IMPORTED_MODULE_3___default()(e.target.value).format("MMM Do YYYY"));
+      },
       type: "date",
       id: "date",
       name: "date",
@@ -61219,7 +61294,7 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
       id: "duration",
       className: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-      value: "1"
+      defaultValue: true
     }, "Select Duration:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       value: "15"
     }, "15 mins"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -61241,12 +61316,15 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "block text-gray-700 text-sm font-bold mb-2",
       htmlFor: "available_hours"
-    }, "Available Hours:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Available Hours (User Timezone):"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "inline-block relative w-full"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      onChange: availableChange,
       id: "available_hours",
       className: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-    }, durations && durations.map(function (m, i, durations) {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      defaultValue: true
+    }, "Select Date:"), durations && durations.map(function (m, i, durations) {
       if (durations.length - 1 !== i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
           key: i
@@ -61492,7 +61570,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     })["catch"](function (err) {
       return console.log(err);
     });
-    console.log(id);
   }, [ip, id]);
   if (expert === null || expert.length === 0 || expert === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_partials_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"], null);else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -62113,7 +62190,7 @@ var GlobalProvider = function GlobalProvider(_ref) {
     /* GET USER IP */
 
     Object(_api__WEBPACK_IMPORTED_MODULE_3__["fetchIP"])().then(function (data) {
-      return setIP(data.ip);
+      setIP(data.ip);
     })["catch"](function (err) {
       return console.log(err);
     });

@@ -34,7 +34,9 @@ export const GlobalProvider = ({ children }) => {
 
         /* GET USER IP */
         fetchIP()
-            .then(data => setIP(data.ip))
+            .then(data => {
+                setIP(data.ip);
+            })
             .catch(err => console.log(err));
     }, []);
 
