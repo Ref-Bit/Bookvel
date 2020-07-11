@@ -730,9 +730,10 @@ module.exports = {
         transitionDuration: ["responsive"]
     },
     corePlugins: {},
-    plugins: [
-        require("tailwindcss"),
-        require("autoprefixer")
-        // require('tailwindcss-spinner')(),
+    plugins: [require("tailwindcss"), require("autoprefixer")],
+    purge: [
+        "./resources/**/*.js",
+        "./resources/**/*.scss",
+        "./resources/**/*.jsx"
     ]
 };
