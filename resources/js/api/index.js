@@ -36,10 +36,17 @@ export const fetchIP = async () => {
         if (data.length !== 0 || data !== null || data !== undefined) {
             return data;
         } else {
-            return [];
+            try {
+                const { fall_data } = await axios.get(
+                    "https://freegeoip.app/json/"
+                );
+                return fall_data;
+            } catch (error) {
+                console.log(`Cannot reach the fallback api...`);
+            }
         }
     } catch (error) {
-        console.log(error);
+        console.log(`Cannot reach the api...`);
     }
 };
 
