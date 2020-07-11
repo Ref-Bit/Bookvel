@@ -29,21 +29,12 @@ export const fetchExpert = async id => {
 
 export const fetchIP = async () => {
     try {
-        const { data } = await axios.get(
-            `https://api.ipstack.com/check?access_key=${process.env.MIX_IP_API_KEY}&format=1`
-        );
+        const { data } = await axios.get(`https://freegeoip.app/json`);
 
         if (data.length !== 0 || data !== null || data !== undefined) {
             return data;
         } else {
-            try {
-                const { fall_data } = await axios.get(
-                    "https://freegeoip.app/json/"
-                );
-                return fall_data;
-            } catch (error) {
-                console.log(`Cannot reach the fallback api...`);
-            }
+            return [];
         }
     } catch (error) {
         console.log(`Cannot reach the api...`);
