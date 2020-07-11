@@ -730,13 +730,5 @@ module.exports = {
         transitionDuration: ["responsive"]
     },
     corePlugins: {},
-    plugins: [require("tailwindcss"), require("autoprefixer")],
-    purge: {
-        enabled: true,
-        content: [
-            "./resources/**/*.js",
-            "./resources/**/*.scss",
-            "./resources/**/*.jsx"
-        ]
-    }
+    plugins: [require("tailwindcss"), require("autoprefixer")]
 };
