@@ -62080,23 +62080,23 @@ __webpack_require__.r(__webpack_exports__);
     className: "cls-5",
     points: "90.92 30.25 77.46 29.69 77.46 28.64 90.92 29.22 90.92 30.25"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    "class": "flex flex-col justify-center md:-mt-32"
+    className: "flex flex-col justify-center md:-mt-32"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    "class": "md:text-6xl text-sm"
+    className: "md:text-6xl text-sm"
   }, "404 Page not found"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    "class": "inline-block mb-2 fill-current text-gray-800",
+    className: "inline-block mb-2 fill-current text-gray-800",
     fill: "currentColor",
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
     width: "24",
     height: "24"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "class": "heroicon-ui",
+    className: "heroicon-ui",
     d: "M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    "class": "md:text-2xl text-sm text-gray-800"
+    className: "md:text-2xl text-sm text-gray-800"
   }, "Back to Home"))));
 });
 

@@ -353,11 +353,11 @@ export default () => {
                     points="90.92 30.25 77.46 29.69 77.46 28.64 90.92 29.22 90.92 30.25"
                 ></polygon>
             </svg>
-            <div class="flex flex-col justify-center md:-mt-32">
-                <h1 class="md:text-6xl text-sm">404 Page not found</h1>
+            <div className="flex flex-col justify-center md:-mt-32">
+                <h1 className="md:text-6xl text-sm">404 Page not found</h1>
                 <Link to="/">
                     <svg
-                        class="inline-block mb-2 fill-current text-gray-800"
+                        className="inline-block mb-2 fill-current text-gray-800"
                         fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -365,11 +365,11 @@ export default () => {
                         height="24"
                     >
                         <path
-                            class="heroicon-ui"
+                            className="heroicon-ui"
                             d="M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z"
                         />
                     </svg>
-                    <span class="md:text-2xl text-sm text-gray-800">
+                    <span className="md:text-2xl text-sm text-gray-800">
                         Back to Home
                     </span>
                 </Link>
