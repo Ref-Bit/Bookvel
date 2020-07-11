@@ -1,11 +1,11 @@
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { NavBar, Footer } from "./index";
 
-const Experts = React.lazy(() => import("./experts/Experts"));
-const Profile = React.lazy(() => import("./experts/Profile"));
-const BookForm = React.lazy(() => import("./experts/BookForm"));
-const NotFound = React.lazy(() => import("./partials/NotFound"));
+const Experts = lazy(() => import("./experts/Experts"));
+const Profile = lazy(() => import("./experts/Profile"));
+const BookForm = lazy(() => import("./experts/BookForm"));
+const NotFound = lazy(() => import("./partials/NotFound"));
 
 import { GlobalProvider } from "../context/Global";
 import {
@@ -21,13 +21,11 @@ export default function App() {
             <Router>
                 <NavBar />
                 <div className="container relative min-h-screen mx-auto">
-                    <Switch>
-                        <Redirect exact from="/" to="/experts" />
-                        <Suspense
-                            fallback={
-                                <div className="mx-auto mt-16 loading"></div>
-                            }
-                        >
+                    <Suspense
+                        fallback={<div className="mx-auto mt-16 loading"></div>}
+                    >
+                        <Switch>
+                            <Redirect exact from="/" to="/experts" />
                             <Route exact path="/experts" component={Experts} />
                             <Route
                                 exact
@@ -39,11 +37,9 @@ export default function App() {
                                 path="/book/:id"
                                 component={BookForm}
                             />
-                        </Suspense>
-                        <Suspense>
                             <Route component={NotFound} />
-                        </Suspense>
-                    </Switch>
+                        </Switch>
+                    </Suspense>
                 </div>
                 <Footer />
             </Router>
