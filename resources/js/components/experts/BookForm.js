@@ -11,7 +11,7 @@ const moment = extendMoment(Moment);
 
 export default () => {
     let { id } = useParams();
-    const { ip } = useContext(GlobalContext);
+    const { ip, timezone } = useContext(GlobalContext);
     const [experts, setExperts] = useState([]);
     const [expert, setExpert] = useState([]);
     const [date, setDate] = useState("");
@@ -20,7 +20,7 @@ export default () => {
     const [durations, setDurations] = useState([]);
     const [rangeFactor, setRangeFactor] = useState("hours");
     const [rangeStep, setRangeStep] = useState("1");
-    const [userTimezone, setUserTimezone] = useState("");
+    const [userTimezone, setUserTimezone] = useState(timezone);
 
     const expertChange = e => {
         e.preventDefault();
@@ -125,7 +125,7 @@ export default () => {
             .catch(err => console.log(err));
         fetchGeoTimezone(ip)
             .then(data => {
-                console.log(`Form: ${data.timezone}`, `IP: ${ip}`);
+                // console.log(`Form: ${data.timezone}`, `IP: ${ip}`);
                 setUserTimezone(data.timezone);
             })
             .catch(err => console.log(err));

@@ -29,7 +29,11 @@ export const fetchExpert = async id => {
 
 export const fetchIP = async () => {
     try {
-        const { data } = await axios.get(`https://freegeoip.app/json`);
+        const { data } = await axios.get(
+            `https://ipapi.co/json/`
+            // `http://api.ipstack.com/check?access_key=${process.env.MIX_IP_API_KEY}&format=1`
+        );
+        console.log(data);
 
         if (data.length !== 0 || data !== null || data !== undefined) {
             return data;
@@ -37,7 +41,7 @@ export const fetchIP = async () => {
             return [];
         }
     } catch (error) {
-        console.log(`Cannot reach the api...`);
+        console.log(error);
     }
 };
 

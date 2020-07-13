@@ -4,6 +4,8 @@ export default (state, action) => {
             return { ...state, ips: action.payload };
         case "SET_IP":
             return { ...state, ip: action.payload };
+        case "SET_TIMEZONE":
+            return { ...state, timezone: action.payload };
 
         default:
             return state;

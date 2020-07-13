@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import Reducer from "./Reducer";
 import { ips } from "../data.json";
-import { fetchIP } from "../api";
+import { fetchIP, fetchGeoTimezone } from "../api";
 
 export const GlobalContext = createContext();
 
@@ -9,7 +9,8 @@ export const GlobalProvider = ({ children }) => {
     // Initial State
     const initialState = {
         ips: [],
-        ip: ""
+        ip: "",
+        timezone: ""
     };
 
     const [state, dispatch] = useReducer(Reducer, initialState);
@@ -27,6 +28,12 @@ export const GlobalProvider = ({ children }) => {
             payload: ip
         });
     }
+    function setTimezone(timezone) {
+        dispatch({
+            type: "SET_TIMEZONE",
+            payload: timezone
+        });
+    }
 
     useEffect(() => {
         /* GET IPS */
@@ -36,6 +43,11 @@ export const GlobalProvider = ({ children }) => {
         fetchIP()
             .then(data => {
                 setIP(data.ip);
+                fetchGeoTimezone(data.ip)
+                    .then(data => {
+                        setTimezone(data.timezone);
+                    })
+                    .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
     }, []);
