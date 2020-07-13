@@ -28,7 +28,12 @@ body {
     color: #333333;
 }
 
-/* Navbar Switcher*/
+// #available_hours option[disabled] {
+//     color: #eee;
+//     font-weight: lighter;
+// }
+
+/* Navbar Switcher */
 .group:hover .group-hover\:scale-100 {
     transform: scale(1);
 }

@@ -24,6 +24,7 @@ export default () => {
 
     const expertChange = e => {
         e.preventDefault();
+        e.persist();
 
         fetchExpert(e.target.value)
             .then(data => {
@@ -87,10 +88,25 @@ export default () => {
         let e_val = e.target.value.replace(/\s/g, "");
         let arr_val = e_val.split("-");
 
-        console.log(tConvert(arr_val[0]), tConvert(arr_val[1]));
-
         setUserStartDate(tConvert(arr_val[0]));
         setUserEndDate(tConvert(arr_val[1]));
+
+        const op = document
+            .getElementById("available_hours")
+            .getElementsByTagName("option");
+
+        for (let i = 0; i < op.length; i++) {
+            /** Disable on Select */
+            op[i].value.replace(/\s/g, "") == e_val
+                ? (op[i].disabled = true)
+                : (op[i].disabled = false);
+
+            /** HIDE on Select 
+                     console.log(arr_selected);
+                        ? (op[i].style.display = "none")
+                        : (op[i].style.display = "block");
+                    */
+        }
     };
 
     const notify = () => {
@@ -209,6 +225,7 @@ export default () => {
                             </label>
                             <input
                                 onChange={e => {
+                                    console.log(e.target.value);
                                     setDate(
                                         Moment(e.target.value).format(
                                             "MMM Do YYYY"
@@ -273,11 +290,11 @@ export default () => {
                                                 return (
                                                     <React.Fragment key={i}>
                                                         <option>
-                                                            {m.format("HH:mm")}
+                                                            {m.format("LT")}
                                                             &nbsp; - &nbsp;
                                                             {durations[
                                                                 i + 1
-                                                            ].format("HH:mm")}
+                                                            ].format("LT")}
                                                         </option>
                                                     </React.Fragment>
                                                 );

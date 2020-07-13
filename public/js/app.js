@@ -61138,6 +61138,7 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
 
   var expertChange = function expertChange(e) {
     e.preventDefault();
+    e.persist();
     Object(_api__WEBPACK_IMPORTED_MODULE_1__["fetchExpert"])(e.target.value).then(function (data) {
       setExpert(data);
       calDurations(data, rangeFactor, rangeStep, userTimezone);
@@ -61198,9 +61199,19 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
   var availableChange = function availableChange(e) {
     var e_val = e.target.value.replace(/\s/g, "");
     var arr_val = e_val.split("-");
-    console.log(tConvert(arr_val[0]), tConvert(arr_val[1]));
     setUserStartDate(tConvert(arr_val[0]));
     setUserEndDate(tConvert(arr_val[1]));
+    var op = document.getElementById("available_hours").getElementsByTagName("option");
+
+    for (var i = 0; i < op.length; i++) {
+      /** Disable on Select */
+      op[i].value.replace(/\s/g, "") == e_val ? op[i].disabled = true : op[i].disabled = false;
+      /** HIDE on Select 
+               console.log(arr_selected);
+                  ? (op[i].style.display = "none")
+                  : (op[i].style.display = "block");
+              */
+    }
   };
 
   var notify = function notify() {
@@ -61295,6 +61306,7 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
       htmlFor: "date"
     }, "Date:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
       onChange: function onChange(e) {
+        console.log(e.target.value);
         setDate(moment__WEBPACK_IMPORTED_MODULE_3___default()(e.target.value).format("MMM Do YYYY"));
       },
       type: "date",
@@ -61347,7 +61359,7 @@ var moment = Object(moment_range__WEBPACK_IMPORTED_MODULE_4__["extendMoment"])(m
       if (durations.length - 1 !== i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
           key: i
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, m.format("HH:mm"), "\xA0 - \xA0", durations[i + 1].format("HH:mm")));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, m.format("LT"), "\xA0 - \xA0", durations[i + 1].format("LT")));
       } else {
         return;
       }
