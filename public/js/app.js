@@ -61563,36 +61563,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       userTimezone = _useState4[0],
       setUserTimezone = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      userOffset = _useState6[0],
+      setUserOffset = _useState6[1];
+
   var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_Global__WEBPACK_IMPORTED_MODULE_4__["GlobalContext"]),
       ip = _useContext.ip;
 
   var TimeDiff = function TimeDiff(_ref) {
     var e_st = _ref.e_st,
         e_et = _ref.e_et,
-        u_timezone = _ref.u_timezone;
-    var new_e_st = Date.parse(e_st);
-    var new_e_et = Date.parse(e_et);
-    var format_options = {
-      timeZone: u_timezone,
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit"
-    };
-    var u_st = new Date(new_e_st).toLocaleString("en-US", format_options); // console.log("Start time: " + u_st + " Timezone: " + u_timezone);
-
-    var u_et = new Date(new_e_et).toLocaleString("en-US", format_options); // console.log("End time: " + u_et + " Timezone: " + u_timezone);
-
+        u_timezone = _ref.u_timezone,
+        e_utc = _ref.e_utc,
+        u_utc = _ref.u_utc;
+    var off_st = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(e_st).utcOffset(u_utc - e_utc).format("LLL");
+    var off_et = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(e_et).utcOffset(u_utc - e_utc).format("LLL");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-8 leading-relaxed text-lg"
-    }, "Working Hours (User Timezone):\xA0", u_st, " - ", u_et);
+    }, "Working Hours (in\xA0", u_timezone.split("/").pop().replace(/_/g, " "), "):\xA0", off_st, " - ", off_et);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     Object(_api__WEBPACK_IMPORTED_MODULE_3__["fetchGeoTimezone"])(ip).then(function (data) {
       setUserTimezone(data.timezone);
-      console.log("\uD83C\uDF10 IP Address: ".concat(data.geo.ip, "\n\r\uD83D\uDCCD Location: ").concat(data.geo.city, "\n\r\u231B Timezone: ").concat(data.timezone));
+      setUserOffset(data.timezone_offset);
+      console.log("\uD83C\uDF10 IP Address: ".concat(data.geo.ip, "\n\r\uD83D\uDCCD Location: ").concat(data.geo.city, "\n\r\u231B Timezone: ").concat(data.timezone, "\n\r"));
     })["catch"](function (err) {
       return console.log(err);
     });
@@ -61634,10 +61630,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       className: "mb-8 leading-relaxed text-xl"
     }, expert.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "mb-8 leading-relaxed text-lg"
-    }, "Working Hours (Expert Timezone):\xA0", moment__WEBPACK_IMPORTED_MODULE_2___default()(expert.st).format("LLL"), " - ", moment__WEBPACK_IMPORTED_MODULE_2___default()(expert.et).format("LLL")), userTimezone && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TimeDiff, {
+    }, "Working Hours (in ", expert.country, "):\xA0", moment__WEBPACK_IMPORTED_MODULE_2___default()(expert.st).format("LLL"), " - ", moment__WEBPACK_IMPORTED_MODULE_2___default()(expert.et).format("LLL")), userTimezone && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TimeDiff, {
       e_st: expert.st,
       e_et: expert.et,
-      u_timezone: userTimezone
+      u_timezone: userTimezone,
+      e_utc: expert.timezone,
+      u_utc: userOffset
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex justify-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {

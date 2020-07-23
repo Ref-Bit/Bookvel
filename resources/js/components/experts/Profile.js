@@ -9,30 +9,26 @@ export default () => {
     let { id } = useParams();
     const [expert, setExpert] = useState([]);
     const [userTimezone, setUserTimezone] = useState("");
+    const [userOffset, setUserOffset] = useState(0);
     const { ip } = useContext(GlobalContext);
 
-    const TimeDiff = ({ e_st, e_et, u_timezone }) => {
-        const new_e_st = Date.parse(e_st);
-        const new_e_et = Date.parse(e_et);
-        const format_options = {
-            timeZone: u_timezone,
-            year: "numeric",
-            month: "short",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit"
-        };
-
-        const u_st = new Date(new_e_st).toLocaleString("en-US", format_options);
-        // console.log("Start time: " + u_st + " Timezone: " + u_timezone);
-
-        const u_et = new Date(new_e_et).toLocaleString("en-US", format_options);
-        // console.log("End time: " + u_et + " Timezone: " + u_timezone);
+    const TimeDiff = ({ e_st, e_et, u_timezone, e_utc, u_utc }) => {
+        const off_st = Moment.utc(e_st)
+            .utcOffset(u_utc - e_utc)
+            .format("LLL");
+        const off_et = Moment.utc(e_et)
+            .utcOffset(u_utc - e_utc)
+            .format("LLL");
 
         return (
             <p className="mb-8 leading-relaxed text-lg">
-                Working Hours (User Timezone):&nbsp;
-                {u_st} - {u_et}
+                Working Hours (in&nbsp;
+                {u_timezone
+                    .split("/")
+                    .pop()
+                    .replace(/_/g, " ")}
+                ):&nbsp;
+                {off_st} - {off_et}
             </p>
         );
     };
@@ -41,8 +37,9 @@ export default () => {
         fetchGeoTimezone(ip)
             .then(data => {
                 setUserTimezone(data.timezone);
+                setUserOffset(data.timezone_offset);
                 console.log(
-                    `🌐 IP Address: ${data.geo.ip}\n\r📍 Location: ${data.geo.city}\n\r⌛ Timezone: ${data.timezone}`
+                    `🌐 IP Address: ${data.geo.ip}\n\r📍 Location: ${data.geo.city}\n\r⌛ Timezone: ${data.timezone}\n\r`
                 );
             })
             .catch(err => console.log(err));
@@ -83,7 +80,7 @@ export default () => {
                             {expert.country}
                         </p>
                         <p className="mb-8 leading-relaxed text-lg">
-                            Working Hours (Expert Timezone):&nbsp;
+                            Working Hours (in {expert.country}):&nbsp;
                             {Moment(expert.st).format("LLL")}
                             {" - "}
                             {Moment(expert.et).format("LLL")}
@@ -93,6 +90,8 @@ export default () => {
                                 e_st={expert.st}
                                 e_et={expert.et}
                                 u_timezone={userTimezone}
+                                e_utc={expert.timezone}
+                                u_utc={userOffset}
                             />
                         )}
                         <div className="flex justify-center">
